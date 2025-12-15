@@ -1,0 +1,73 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def register():
+    print("---- Form Registered ----")
+    print("Name:", name_var.get())
+    print("Email:", email_var.get())
+    print("Contact:", contact_var.get())
+    print("Gender:", gender_var.get())
+    print("Country:", list_box.get(tk.ACTIVE))
+    print("-------------------------")
+
+    # Thank you popup
+    messagebox.showinfo("Success", "Thank you for registering!")
+
+root = tk.Tk()
+root.title("Registration Form")
+root.geometry("500x600")
+root.configure(bg="#f2f2f2")  # background color
+
+# ------------------ TITLE ------------------
+tk.Label(
+    root,
+    text="Registration Form",
+    font=("Arial", 22, "bold"),
+    bg="#f2f2f2",
+    fg="#333333"
+).pack(pady=15)
+
+# ------------------ NAME ------------------
+tk.Label(root, text="Name:", font=("Arial", 15), bg="#f2f2f2").pack()
+name_var = tk.StringVar()
+tk.Entry(root, textvariable=name_var, width=30).pack(pady=5)
+
+# ------------------ EMAIL ------------------
+tk.Label(root, text="Email:", font=("Arial", 15), bg="#f2f2f2").pack()
+email_var = tk.StringVar()
+tk.Entry(root, textvariable=email_var, width=30).pack(pady=5)
+
+# ------------------ CONTACT ------------------
+tk.Label(root, text="Contact:", font=("Arial", 15), bg="#f2f2f2").pack()
+contact_var = tk.StringVar()
+tk.Entry(root, textvariable=contact_var, width=30).pack(pady=5)
+
+# ------------------ GENDER ------------------
+tk.Label(root, text="Gender:", font=("Arial", 15), bg="#f2f2f2").pack()
+gender_var = tk.StringVar()
+
+tk.Radiobutton(root, text="Male", value="Male", variable=gender_var, bg="#f2f2f2").pack()
+tk.Radiobutton(root, text="Female", value="Female", variable=gender_var, bg="#f2f2f2").pack()
+
+# ------------------ COUNTRY ------------------
+tk.Label(root, text="Country:", font=("Arial", 15), bg="#f2f2f2").pack()
+list_box = tk.Listbox(root, height=4)
+list_box.pack(pady=5)
+
+countries = ["India", "USA", "UK", "Canada"]
+for c in countries:
+    list_box.insert(tk.END, c)
+
+# ------------------ REGISTER BUTTON ------------------
+tk.Button(
+    root,
+    text="Register",
+    command=register,
+    width=15,
+    height=2,
+    bg="#4CAF50",
+    fg="white",
+    font=("Arial", 12, "bold")
+).pack(pady=25)
+
+root.mainloop()
